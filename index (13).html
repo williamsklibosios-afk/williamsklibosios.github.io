@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will — Mechanical &amp; Mechatronic Engineer</title>
+<meta name="description" content="Engineering portfolio: UAV airframes, additive manufacturing and flight electronics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF8;
+  --rule:#DDDDD7;
+  --rule-soft:#EAEAE5;
+  --ink:#14181D;
+  --dim:#606A75;
+  --accent:#1F5E86;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B0F14; --rule:#1D2833; --rule-soft:#141C25;
+    --ink:#E3E9EF; --dim:#7C8A98; --accent:#6BA9D0;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B0F14; --rule:#1D2833; --rule-soft:#141C25;
+  --ink:#E3E9EF; --dim:#7C8A98; --accent:#6BA9D0;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:var(--accent)}
+::selection{background:var(--accent); color:var(--bg)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+
+.wrap{max-width:1060px; margin:0 auto; padding:0 26px}
+.prose{max-width:64ch}
+
+h1,h2,h3{font-weight:600; line-height:1.1; letter-spacing:-.022em; margin:0}
+h1{font-size:clamp(34px,5.4vw,58px)}
+h2{font-size:clamp(23px,3vw,30px); margin-bottom:26px}
+h3{font-size:18px; letter-spacing:-.01em}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums}
+
+/* header */
+header{border-bottom:1px solid var(--rule); position:sticky; top:0; background:var(--bg); z-index:20}
+header .wrap{display:flex; align-items:center; gap:26px; height:60px}
+.name{font-weight:600; letter-spacing:-.01em; font-size:17px}
+nav{margin-left:auto; display:flex; gap:22px}
+nav a{color:var(--dim); text-decoration:none; font-size:14.5px}
+nav a:hover{color:var(--ink)}
+.theme{
+  background:none; border:1px solid var(--rule); color:var(--dim); cursor:pointer;
+  font-family:var(--mono); font-size:11.5px; padding:5px 10px; border-radius:2px; line-height:1.4;
+}
+.theme:hover{color:var(--ink); border-color:var(--accent)}
+@media (max-width:760px){ nav{display:none} }
+
+/* hero */
+.hero{padding:76px 0 58px}
+.hero h1{max-width:17ch}
+.hero p.lede{font-size:19px; color:var(--dim); max-width:52ch; margin-top:22px}
+.stats{display:flex; flex-wrap:wrap; gap:30px; margin-top:34px; padding-top:22px; border-top:1px solid var(--rule)}
+.stats div b{display:block; font-family:var(--mono); font-weight:500; font-size:20px; letter-spacing:-.02em}
+.stats div span{display:block; font-size:13px; color:var(--dim); margin-top:2px}
+.shot{background:var(--rule-soft); border:1px solid var(--rule); padding:26px 18px; margin-top:48px}
+.shot img{width:100%; height:auto}
+.shotcap{font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-top:11px}
+@media (max-width:860px){ .hero{padding:48px 0 40px} .shot{padding:14px 10px; margin-top:34px} }
+
+.ga{width:100%; height:auto}
+.ga .heavy{fill:none; stroke:var(--ink); stroke-width:4.5; stroke-linejoin:round}
+.ga .light{fill:none; stroke:var(--dim); stroke-width:2; opacity:.7}
+.ga .acc{fill:none; stroke:var(--accent); stroke-width:4; stroke-linecap:round}
+.ga .disc{fill:none; stroke:var(--accent); stroke-width:2.5; opacity:.45}
+.ga text{font-family:var(--mono); font-size:26px; fill:var(--dim)}
+@media (prefers-reduced-motion:no-preference){
+  .ga .heavy,.ga .acc{stroke-dasharray:6000; stroke-dashoffset:6000; animation:ink 2.1s cubic-bezier(.3,.85,.3,1) forwards}
+  .ga .acc{animation-delay:.8s}
+  .ga .late{opacity:0; animation:in .7s ease 1.6s forwards}
+  @keyframes ink{to{stroke-dashoffset:0}}
+  @keyframes in{to{opacity:1}}
+}
+
+/* sections */
+section{padding:62px 0; border-top:1px solid var(--rule)}
+.lead{color:var(--dim); max-width:58ch; margin:-14px 0 32px}
+
+/* cv rows */
+.row{display:grid; grid-template-columns:150px 1fr; gap:26px; padding:22px 0; border-top:1px solid var(--rule-soft)}
+.row:first-of-type{border-top:none}
+.row .when{font-family:var(--mono); font-size:13px; color:var(--dim); padding-top:3px}
+.row .org{color:var(--dim); font-size:15px; margin-top:3px}
+.row ul{margin:11px 0 0; padding-left:17px}
+.row li{margin-bottom:5px}
+@media (max-width:660px){ .row{grid-template-columns:1fr; gap:6px} }
+
+/* skills */
+.cols{display:flex; flex-wrap:wrap; gap:34px}
+.cols > div{flex:1 1 210px}
+.cols h3{font-size:15.5px; margin-bottom:5px}
+.cols p{font-size:15px; color:var(--dim)}
+
+/* figures */
+figure{margin:0}
+.slot{
+  border:1px solid var(--rule); background:var(--rule-soft);
+  aspect-ratio:4/3; display:flex; align-items:center; justify-content:center;
+  color:var(--dim); font-family:var(--mono); font-size:12.5px; text-align:center; padding:16px;
+}
+.slot img{width:100%; height:100%; object-fit:cover}
+figcaption{font-size:14px; color:var(--dim); margin-top:9px; line-height:1.5}
+.work{display:flex; flex-wrap:wrap; gap:26px}
+.work > figure{flex:1 1 260px}
+.draw{border:1px solid var(--rule); background:var(--rule-soft); padding:16px}
+.portrait .slot{aspect-ratio:4/5}
+
+.split{display:grid; grid-template-columns:290px 1fr; gap:44px; align-items:start}
+@media (max-width:760px){ .split{grid-template-columns:1fr; gap:26px} }
+
+/* q&a */
+.qa{padding:24px 0; border-top:1px solid var(--rule-soft)}
+.qa:first-of-type{border-top:none}
+.qa h3{margin-bottom:9px}
+
+/* letter */
+.letter{max-width:68ch; border-left:1px solid var(--rule); padding-left:32px}
+.letter .addr{font-family:var(--mono); font-size:13.5px; color:var(--dim); line-height:1.95; margin-bottom:26px}
+.crit{margin:0 0 26px}
+.crit h3{font-size:16px; color:var(--accent); margin-bottom:7px}
+@media (max-width:660px){ .letter{padding-left:20px} }
+
+/* placeholders */
+.tbd{color:var(--accent); border-bottom:1px dotted var(--accent)}
+.note{
+  font-family:var(--mono); font-size:12.5px; color:var(--dim);
+  border-left:2px solid var(--accent); padding-left:13px; margin-top:20px; line-height:1.7;
+}
+
+footer{border-top:1px solid var(--rule); padding:48px 0 66px}
+.contact{display:flex; flex-wrap:wrap; gap:16px 40px; font-family:var(--mono); font-size:14px}
+.contact a{text-decoration:none}
+.contact a:hover{text-decoration:underline}
+
+@media print{
+  header,.theme,.note{display:none}
+  body{background:#fff; color:#000; font-size:11pt}
+  section{padding:18px 0; page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="name">Will</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#cv">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#practice">Practice</a>
+      <a href="#letter">Letter</a>
+    </nav>
+    <button class="theme" id="theme" type="button">Theme</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>I design aircraft that come off a print bed.</h1>
+    <p class="lede">Final-year mechanical and mechatronic engineering student at UTS. I take a UAV from parametric geometry to a flying prototype, and document it well enough that someone else could build it again.</p>
+    <div class="stats">
+        <div><b>81.73</b><span>Weighted average mark</span></div>
+        <div><b>Dec 2026</b><span>Graduating</span></div>
+        <div><b>4+1</b><span>VTOL capstone airframe</span></div>
+        <div><b>AERIS</b><span>Society president</span></div>
+    </div>
+
+    <div class="shot">
+      <img src="AM41.png" alt="AM41 VTOL flying wing seen from the front">
+    </div>
+    <p class="shotcap">AM41 — 1122 mm span, four lift rotors and a pusher, printed airframe on carbon spars</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <div class="split">
+      <figure class="portrait">
+        <div class="slot"><img src="Portrat.png" alt="Will"></div>
+        <figcaption><span class="tbd">Caption — e.g. bench-testing the AM41 avionics stack, September 2026</span></figcaption>
+      </figure>
+      <div class="prose">
+        <p><span class="tbd">Open with the thing that set your direction — the first build, the first flight, the first failure that taught you something. Two or three sentences.</span></p>
+        <p><span class="tbd">Then what you actually do: the problems you're good at, how you move between CAD, electronics and test, and what you've learned about doing it inside a team.</span></p>
+        <p><span class="tbd">Close on where you're heading after December 2026 and the work you want to be doing.</span></p>
+        <p class="note">This section and your CV should read as one story — growth over time, not a list of tasks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="wrap">
+    <h2>Experience</h2>
+
+    <div class="row">
+      <div class="when"><span class="tbd">dates</span></div>
+      <div>
+        <h3>Engineering Intern</h3>
+        <div class="org">Fliight Technologies — UAV and RF systems</div>
+        <ul>
+          <li>Field validation of off-grid RF mesh communications, including a mining site deployment.</li>
+          <li><span class="tbd">Add a result with a number — range achieved, tests completed, time saved.</span></li>
+          <li><span class="tbd">Add something you owned end to end.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when"><span class="tbd">dates</span></div>
+      <div>
+        <h3>President</h3>
+        <div class="org">AERIS UAV Society, University of Technology Sydney</div>
+        <ul>
+          <li><span class="tbd">Members, events run, workshops delivered, sponsorship secured.</span></li>
+          <li><span class="tbd">One leadership outcome you're proud of.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="when"><span class="tbd">dates</span></div>
+      <div>
+        <h3><span class="tbd">Role</span></h3>
+        <div class="org"><span class="tbd">Organisation</span></div>
+        <ul><li><span class="tbd">Copy this row for each additional position.</span></li></ul>
+      </div>
+    </div>
+
+    <h2 style="margin-top:54px">Education</h2>
+    <div class="row">
+      <div class="when">2022 – 2026</div>
+      <div>
+        <h3>Bachelor of Engineering (Honours), Mechanical and Mechatronic</h3>
+        <div class="org">University of Technology Sydney</div>
+        <ul>
+          <li>Weighted average mark 81.73.</li>
+          <li>Capstone: AM41, a fully additively manufactured 4+1 VTOL flying wing.</li>
+          <li><span class="tbd">Awards, scholarships or notable subject results.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="margin-top:54px">Skills</h2>
+    <div class="cols">
+      <div><h3>Design and analysis</h3><p>SolidWorks, Fusion 360, parametric modelling, topology optimisation, FEA</p></div>
+      <div><h3>Manufacturing</h3><p>FDM additive manufacture, LW-PLA and PETG process development, carbon spars, bench test rigs</p></div>
+      <div><h3>Electronics and software</h3><p>Python, embedded C, ROS 2, ArduPilot, ELRS, Mission Planner</p></div>
+      <div><h3>Professional</h3><p>Technical reporting, design review, team leadership, risk and safety planning</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <h2>Selected work</h2>
+    <div class="work">
+      <figure>
+        <div class="draw">
+          <svg class="ga" viewBox="-700 -300 1400 1180" role="img"
+               aria-label="Plan view drawing of the AM41 VTOL flying wing">
+            <line class="light late" x1="0" y1="-270" x2="0" y2="830"
+                  stroke-dasharray="34 10 6 10"/>
+
+            <path class="heavy" d="M0,0 L561,250 L561,400 L0,401 Z"/>
+            <path class="heavy" d="M0,0 L-561,250 L-561,400 L0,401 Z"/>
+
+            <g class="light late">
+              <line x1="180" y1="80" x2="180" y2="401"/>
+              <line x1="-180" y1="80" x2="-180" y2="401"/>
+              <line x1="430" y1="192" x2="430" y2="400"/>
+              <line x1="-430" y1="192" x2="-430" y2="400"/>
+              <rect x="300" y="344" width="170" height="52" fill="none"/>
+              <rect x="-470" y="344" width="170" height="52" fill="none"/>
+            </g>
+
+            <line class="acc" x1="-540" y1="253" x2="540" y2="253"/>
+            <line class="acc" x1="-300" y1="352" x2="300" y2="352"/>
+
+            <line class="heavy" x1="245" y1="-170" x2="245" y2="540"/>
+            <line class="heavy" x1="-245" y1="-170" x2="-245" y2="540"/>
+
+            <g class="disc late">
+              <circle cx="245" cy="-150" r="89"/><circle cx="-245" cy="-150" r="89"/>
+              <circle cx="245" cy="520" r="89"/><circle cx="-245" cy="520" r="89"/>
+            </g>
+
+            <path class="heavy" d="M-58,30 L58,30 L52,470 L-52,470 Z"/>
+            <line class="heavy" x1="0" y1="470" x2="0" y2="622"/>
+            <g class="disc late">
+              <line x1="-127" y1="642" x2="127" y2="642"/>
+              <line x1="-127" y1="622" x2="-127" y2="662"/>
+              <line x1="127" y1="622" x2="127" y2="662"/>
+            </g>
+
+            <g class="light late">
+              <line x1="-561" y1="790" x2="561" y2="790"/>
+              <line x1="-561" y1="758" x2="-561" y2="812"/>
+              <line x1="561" y1="758" x2="561" y2="812"/>
+            </g>
+            <g class="late">
+              <text x="0" y="774" text-anchor="middle">1122 mm span</text>
+              <text x="-690" y="-240">AM41 — plan view</text>
+              <text x="-690" y="-198">MH 60 · 4° washout · 1938 g</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption><strong>AM41</strong> — <span class="tbd">one line on what it is and what came out of it.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="slot"><img src="Flight%20test.jpg" alt="Flight testing the airframe"></div>
+        <figcaption><strong>Flight test</strong> — <span class="tbd">one line on what you were testing and what you learned.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="slot"><img src="GCS_Design_Fliight_Technologies.jpg" alt="Ground control station design"></div>
+        <figcaption><strong>Ground control station</strong> — <span class="tbd">one line on your role and the outcome.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="slot"><img src="Antenna.jpg" alt="RF antenna hardware"></div>
+        <figcaption><strong>RF mesh hardware</strong> — <span class="tbd">one line on the field validation work.</span></figcaption>
+      </figure>
+    </div>
+    <p class="note">Photos sit in the repo root. To add another, copy a figure block and change the filename:
+      &lt;div class="slot"&gt;&lt;img src="Clip.jpg" alt="describe the photo"&gt;&lt;/div&gt;
+      Spaces in a filename must be written as %20.</p>
+  </div>
+</section>
+
+<!-- 1A -->
+<section id="practice">
+  <div class="wrap">
+    <h2>Professional practice</h2>
+    <p class="lead">Replace each heading with the exact question wording from the brief.</p>
+    <div class="prose">
+      <div class="qa">
+        <h3><span class="tbd">Question 1 — paste the question here</span></h3>
+        <p><span class="tbd">Answer in full paragraphs. Name the context, what you were responsible for, and what it changed about how you see the profession. Describe the work, not the client.</span></p>
+      </div>
+      <div class="qa">
+        <h3><span class="tbd">Question 2</span></h3>
+        <p><span class="tbd">Your answer.</span></p>
+      </div>
+      <div class="qa">
+        <h3><span class="tbd">Question 3</span></h3>
+        <p><span class="tbd">Your answer.</span></p>
+      </div>
+      <div class="qa">
+        <h3><span class="tbd">Question 4</span></h3>
+        <p><span class="tbd">Your answer.</span></p>
+      </div>
+      <p class="note">Each answer needs to show how work experience formed your professional identity. Anchor every one in something that actually happened.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter">
+  <div class="wrap">
+    <h2>Cover letter</h2>
+    <p class="lead">One block per selection criterion, each written as situation, task, action and result.</p>
+    <div class="letter">
+      <div class="addr">
+        <span class="tbd">Hiring manager</span><br>
+        <span class="tbd">Company</span><br>
+        <span class="tbd">Address</span><br>
+        <span class="tbd">Date</span><br><br>
+        Re: <span class="tbd">Position title and reference number</span>
+      </div>
+
+      <p>Dear <span class="tbd">name</span>,</p>
+      <p><span class="tbd">Opening: the role, where you saw it, and one sentence on why you fit.</span></p>
+
+      <div class="crit">
+        <h3><span class="tbd">Criterion 1 — quote it from the advertisement</span></h3>
+        <p><span class="tbd">The situation and what you were asked to deliver, what you personally did, and the measurable result. Written as prose, not labelled S-T-A-R.</span></p>
+      </div>
+      <div class="crit">
+        <h3><span class="tbd">Criterion 2</span></h3>
+        <p><span class="tbd">Situation, task, action, result.</span></p>
+      </div>
+      <div class="crit">
+        <h3><span class="tbd">Criterion 3</span></h3>
+        <p><span class="tbd">Situation, task, action, result.</span></p>
+      </div>
+      <div class="crit">
+        <h3><span class="tbd">Criterion 4</span></h3>
+        <p><span class="tbd">Situation, task, action, result.</span></p>
+      </div>
+
+      <p><span class="tbd">Closing: what you'd bring to the team, and a clear next step.</span></p>
+      <p>Yours sincerely,<br><span class="tbd">Your name</span></p>
+    </div>
+    <p class="note">Use the advertisement's own wording in each heading so a reader can match them one to one.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="contact">
+      <span><span class="tbd">email@address.com</span></span>
+      <a href="#"><span class="tbd">linkedin.com/in/handle</span></a>
+      <a href="https://github.com/williamsklibosios-afk">github.com/williamsklibosios-afk</a>
+      <span style="color:var(--dim)">Sydney, Australia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement, btn = document.getElementById('theme');
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e){}
+  if (saved) root.setAttribute('data-theme', saved);
+  btn.addEventListener('click', function(){
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var now = root.getAttribute('data-theme') || (dark ? 'dark' : 'light');
+    var next = now === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
