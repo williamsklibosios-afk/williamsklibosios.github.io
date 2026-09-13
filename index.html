@@ -16,18 +16,19 @@
   --ink:#14181D;
   --dim:#606A75;
   --accent:#1F5E86;
+  --hero-op:.55;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0B0F14; --rule:#1D2833; --rule-soft:#141C25;
-    --ink:#E3E9EF; --dim:#7C8A98; --accent:#6BA9D0;
+    --ink:#E3E9EF; --dim:#7C8A98; --accent:#6BA9D0; --hero-op:.26;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0B0F14; --rule:#1D2833; --rule-soft:#141C25;
-  --ink:#E3E9EF; --dim:#7C8A98; --accent:#6BA9D0;
+  --ink:#E3E9EF; --dim:#7C8A98; --accent:#6BA9D0; --hero-op:.26;
 }
 
 *{box-sizing:border-box}
@@ -44,6 +45,7 @@ a{color:var(--accent)}
 
 .wrap{max-width:1060px; margin:0 auto; padding:0 26px}
 .prose{max-width:64ch}
+.prose p,.letter p,.row li{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
 
 h1,h2,h3{font-weight:600; line-height:1.1; letter-spacing:-.022em; margin:0}
 h1{font-size:clamp(34px,5.4vw,58px)}
@@ -68,30 +70,24 @@ nav a:hover{color:var(--ink)}
 @media (max-width:760px){ nav{display:none} }
 
 /* hero */
-.hero{padding:76px 0 58px}
+.hero{padding:96px 0 128px}
 .hero h1{max-width:17ch}
 .hero p.lede{font-size:19px; color:var(--dim); max-width:52ch; margin-top:22px}
 .stats{display:flex; flex-wrap:wrap; gap:30px; margin-top:34px; padding-top:22px; border-top:1px solid var(--rule)}
 .stats div b{display:block; font-family:var(--mono); font-weight:500; font-size:20px; letter-spacing:-.02em}
 .stats div span{display:block; font-size:13px; color:var(--dim); margin-top:2px}
-.shot{background:var(--rule-soft); border:1px solid var(--rule); padding:26px 18px; margin-top:48px}
-.shot img{width:100%; height:auto}
-.shotcap{font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-top:11px}
-@media (max-width:860px){ .hero{padding:48px 0 40px} .shot{padding:14px 10px; margin-top:34px} }
-
-.ga{width:100%; height:auto}
-.ga .heavy{fill:none; stroke:var(--ink); stroke-width:4.5; stroke-linejoin:round}
-.ga .light{fill:none; stroke:var(--dim); stroke-width:2; opacity:.7}
-.ga .acc{fill:none; stroke:var(--accent); stroke-width:4; stroke-linecap:round}
-.ga .disc{fill:none; stroke:var(--accent); stroke-width:2.5; opacity:.45}
-.ga text{font-family:var(--mono); font-size:26px; fill:var(--dim)}
-@media (prefers-reduced-motion:no-preference){
-  .ga .heavy,.ga .acc{stroke-dasharray:6000; stroke-dashoffset:6000; animation:ink 2.1s cubic-bezier(.3,.85,.3,1) forwards}
-  .ga .acc{animation-delay:.8s}
-  .ga .late{opacity:0; animation:in .7s ease 1.6s forwards}
-  @keyframes ink{to{stroke-dashoffset:0}}
-  @keyframes in{to{opacity:1}}
+.hero{position:relative; overflow:hidden}
+.hero .wrap{position:relative; z-index:1}
+.hero-bg{
+  position:absolute; top:46%; left:50%; width:132%; max-width:none;
+  transform:translate(-50%,-50%); pointer-events:none; z-index:0;
+  mix-blend-mode:multiply; opacity:calc(var(--hero-op) * var(--fade,1));
 }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .hero-bg{mix-blend-mode:normal}
+}
+:root[data-theme="dark"] .hero-bg{mix-blend-mode:normal}
+@media (max-width:860px){ .hero{padding:56px 0 72px} .hero-bg{width:190%; top:58%} }
 
 /* sections */
 section{padding:62px 0; border-top:1px solid var(--rule)}
@@ -123,7 +119,6 @@ figure{margin:0}
 figcaption{font-size:14px; color:var(--dim); margin-top:9px; line-height:1.5}
 .work{display:flex; flex-wrap:wrap; gap:26px}
 .work > figure{flex:1 1 260px}
-.draw{border:1px solid var(--rule); background:var(--rule-soft); padding:16px}
 .portrait .slot{aspect-ratio:4/5}
 .figure-centre{max-width:340px; margin:0 auto 40px}
 .slot{overflow:hidden}
@@ -181,6 +176,7 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
 </header>
 
 <div class="hero">
+  <img class="hero-bg" id="herobg" src="AM41.png" alt="" aria-hidden="true">
   <div class="wrap">
     <h1>I design aircraft that come off a print bed.</h1>
     <p class="lede">Final-year mechanical and mechatronic engineering student at UTS, working across UAV systems, embedded hardware and field-tested communications. I take an aircraft from parametric geometry to a flying prototype and document it well enough that someone else could build it again.</p>
@@ -191,10 +187,6 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
       <div><b>4+1</b><span>VTOL capstone airframe</span></div>
     </div>
 
-    <div class="shot">
-      <img src="AM41.png" alt="4+1 VTOL flying-wing UAV seen from the front">
-    </div>
-    <p class="shotcap">Capstone airframe — 4+1 VTOL flying wing, printed structure on carbon spars</p>
   </div>
 </div>
 
@@ -323,56 +315,8 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
 
     <div class="work">
       <figure>
-        <div class="draw">
-          <svg class="ga" viewBox="-700 -300 1400 1180" role="img"
-                   aria-label="Plan view drawing of the AM41 VTOL flying wing">
-                <line class="light late" x1="0" y1="-270" x2="0" y2="830"
-                      stroke-dasharray="34 10 6 10"/>
-
-                <path class="heavy" d="M0,0 L561,250 L561,400 L0,401 Z"/>
-                <path class="heavy" d="M0,0 L-561,250 L-561,400 L0,401 Z"/>
-
-                <g class="light late">
-                  <line x1="180" y1="80" x2="180" y2="401"/>
-                  <line x1="-180" y1="80" x2="-180" y2="401"/>
-                  <line x1="430" y1="192" x2="430" y2="400"/>
-                  <line x1="-430" y1="192" x2="-430" y2="400"/>
-                  <rect x="300" y="344" width="170" height="52" fill="none"/>
-                  <rect x="-470" y="344" width="170" height="52" fill="none"/>
-                </g>
-
-                <line class="acc" x1="-540" y1="253" x2="540" y2="253"/>
-                <line class="acc" x1="-300" y1="352" x2="300" y2="352"/>
-
-                <line class="heavy" x1="245" y1="-170" x2="245" y2="540"/>
-                <line class="heavy" x1="-245" y1="-170" x2="-245" y2="540"/>
-
-                <g class="disc late">
-                  <circle cx="245" cy="-150" r="89"/><circle cx="-245" cy="-150" r="89"/>
-                  <circle cx="245" cy="520" r="89"/><circle cx="-245" cy="520" r="89"/>
-                </g>
-
-                <path class="heavy" d="M-58,30 L58,30 L52,470 L-52,470 Z"/>
-                <line class="heavy" x1="0" y1="470" x2="0" y2="622"/>
-                <g class="disc late">
-                  <line x1="-127" y1="642" x2="127" y2="642"/>
-                  <line x1="-127" y1="622" x2="-127" y2="662"/>
-                  <line x1="127" y1="622" x2="127" y2="662"/>
-                </g>
-
-                <g class="light late">
-                  <line x1="-561" y1="790" x2="561" y2="790"/>
-                  <line x1="-561" y1="758" x2="-561" y2="812"/>
-                  <line x1="561" y1="758" x2="561" y2="812"/>
-                </g>
-                <g class="late">
-                  <text x="0" y="774" text-anchor="middle">1122 mm span</text>
-                  <text x="-690" y="-240">AM41 — plan view</text>
-                  <text x="-690" y="-198">MH 60 · 4° washout · 1938 g</text>
-                </g>
-              </svg>
-        </div>
-        <figcaption><strong>High-endurance VTOL UAV</strong> — capstone airframe. Plan view of the printed flying wing, showing the carbon spars, four lift rotors and pusher motor.</figcaption>
+        <div class="slot"><img src="Drone.jpg" alt="Arace Angle UAV with modified electrical port"></div>
+        <figcaption><strong>Arace Angle</strong> — modification designed for client flight testing, improving electrical port reliability in the field.</figcaption>
       </figure>
       <figure>
         <div class="slot"><img src="Flight%20test.jpg" alt="Flight testing the airframe"></div>
@@ -484,6 +428,21 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
 </footer>
 
 <script>
+(function(){
+  var bg = document.getElementById('herobg');
+  var tick = false;
+  function fade(){
+    var y = window.scrollY || 0;
+    var f = Math.max(0, 1 - y / 520);
+    bg.style.setProperty('--fade', f.toFixed(3));
+    tick = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!tick) { tick = true; window.requestAnimationFrame(fade); }
+  }, {passive:true});
+  fade();
+})();
+
 (function(){
   var root = document.documentElement, btn = document.getElementById('theme');
   var saved = null;
