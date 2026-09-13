@@ -125,8 +125,13 @@ figcaption{font-size:14px; color:var(--dim); margin-top:9px; line-height:1.5}
 .work > figure{flex:1 1 260px}
 .draw{border:1px solid var(--rule); background:var(--rule-soft); padding:16px}
 .portrait .slot{aspect-ratio:4/5}
+.figure-centre{max-width:340px; margin:0 auto 40px}
+.slot{overflow:hidden}
+.slot img.crop{transform:scale(1.45); transform-origin:center 22%}
+.sub{font-size:14px; font-weight:500; color:var(--dim); letter-spacing:.02em; margin:0 0 16px}
 
 .split{display:grid; grid-template-columns:290px 1fr; gap:44px; align-items:start}
+.centred{max-width:66ch; margin:0 auto}
 @media (max-width:760px){ .split{grid-template-columns:1fr; gap:26px} }
 
 /* q&a */
@@ -166,11 +171,10 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
   <div class="wrap">
     <span class="name">William Sklibosios</span>
     <nav>
-      <a href="#about">About</a>
-      <a href="#cv">Experience</a>
+      <a href="#about">About me</a>
+      <a href="#cv">Curriculum vitae</a>
       <a href="#work">Work</a>
-      <a href="#practice">Practice</a>
-      <a href="#letter">Letter</a>
+      <a href="#letter">Cover letter</a>
     </nav>
     <button class="theme" id="theme" type="button">Theme</button>
   </div>
@@ -197,18 +201,22 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-    <h2>About</h2>
-    <div class="split">
-      <figure class="portrait">
-        <div class="slot"><img src="Portrat.png" alt="William Sklibosios"></div>
-        <figcaption><span class="tbd">Caption — where and when this was taken.</span></figcaption>
-      </figure>
-      <div class="prose">
-        <p><span class="tbd">Open with the thing that set your direction — the first build, the first flight, the first failure that taught you something. Two or three sentences.</span></p>
-        <p><span class="tbd">Then what you actually do: the problems you're good at, how you move between CAD, electronics and test, and what founding AERIS taught you about working with people who know more than you in their own area.</span></p>
-        <p><span class="tbd">Close on where you're heading after December 2026 — aerospace, defence, advanced technology — and the kind of work you want to be doing.</span></p>
-        <p class="note">This section and the experience below should read as one story: growth over time, not a list of tasks.</p>
-      </div>
+    <h2 style="text-align:center">About me</h2>
+
+    <figure class="portrait figure-centre">
+      <div class="slot"><img class="crop" src="Portrat.png" alt="William Sklibosios"></div>
+    </figure>
+
+    <div class="prose centred">
+      <p>I started building aircraft before I knew how to analyse them. Radio-controlled models and FPV quadcopters taught me more in a few seasons than any textbook could, mostly because they kept breaking. Every crash was a diagnosis: a mount that flexed where I had assumed it was rigid, a battery sagging under a load I had never measured, a receiver placed somewhere convenient rather than somewhere sensible. That habit of taking a failure apart until I understand it is the reason I chose mechanical and mechatronic engineering, and it is still how I work.</p>
+
+      <p>University turned that instinct into method. On UTS Motorsports Electric I learned what it means to design inside a system I do not control, where a bracket has to satisfy aerodynamics, regulations, manufacturing and a deadline at the same time. Founding AERIS UAV pushed me further in a different direction. Running a 47-member society taught me that the hardest part of a multidisciplinary build is rarely the engineering; it is making sure the mechanical, electrical and software work converge on the same aircraft. I also learned that leading does not mean holding every decision. When somebody on the team knows an area better than I do, the useful thing I can offer is ownership and integration, not instruction.</p>
+
+      <p>My internship at Fliight Technologies changed what I consider a finished design. Working on ruggedised ground control hardware, compact radio layouts and off-grid mesh communications meant spending time in the field rather than in CAD, and the field is unforgiving of assumptions. An antenna that performs on the bench can disappoint on a ridge line; an enclosure that seals in the workshop can admit water in the rain. I came away treating information as something to be verified and managed deliberately, checking specifications and tolerances against each other before parts are made rather than discovering the conflict afterwards.</p>
+
+      <p>My capstone brought both halves of that together, and it is also where I first had to apply professional judgement to my own ambition. Designing a fully 3D-printed 4+1 VTOL flying wing has meant iterating the fuselage, wings, motor mounts and avionics bay around the strengths and limitations of additive manufacturing. But as the airframe grew heavier, so did the consequences of a failed test. Choosing to seek supervision and a suitable testing environment, rather than flying it myself because I was impatient to see it work, taught me more about being an engineer than any part of the design did.</p>
+
+      <p>I finish my degree in December 2026. I want to work where mechanical design, electronics and flight testing meet, in aerospace, defence or advanced technology, and I want to keep working on things that have to survive contact with the real world.</p>
     </div>
   </div>
 </section>
@@ -216,7 +224,8 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
 <!-- CV -->
 <section id="cv">
   <div class="wrap">
-    <h2>Experience</h2>
+    <h2>Curriculum vitae</h2>
+    <p class="sub">Experience</p>
 
     <div class="row">
       <div class="when">Jan 2026 — present</div>
@@ -284,7 +293,7 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
       </div>
     </div>
 
-    <h2 style="margin-top:56px">Education</h2>
+    <p class="sub" style="margin-top:52px">Education</p>
     <div class="row">
       <div class="when">Feb 2023 — Dec 2026</div>
       <div>
@@ -297,7 +306,7 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
       </div>
     </div>
 
-    <h2 style="margin-top:56px">Skills</h2>
+    <p class="sub" style="margin-top:52px">Technical skills</p>
     <div class="cols">
       <div><h3>Design</h3><p>SOLIDWORKS, Fusion 360, Altium Designer, ANSYS</p></div>
       <div><h3>Manufacturing</h3><p>3D printing, soldering, laser cutting, machining and fabrication</p></div>
@@ -363,11 +372,11 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
                 </g>
               </svg>
         </div>
-        <figcaption><strong>High-endurance VTOL UAV</strong> — capstone airframe design, lead aerodynamics and structure. <span class="tbd">Add one line on the result.</span></figcaption>
+        <figcaption><strong>High-endurance VTOL UAV</strong> — capstone airframe. Plan view of the printed flying wing, showing the carbon spars, four lift rotors and pusher motor.</figcaption>
       </figure>
       <figure>
         <div class="slot"><img src="Flight%20test.jpg" alt="Flight testing the airframe"></div>
-        <figcaption><strong>Flight test</strong> — <span class="tbd">what you were testing and what it told you.</span></figcaption>
+        <figcaption><strong>Flight testing</strong> — validating the airframe and propulsion system in supervised field conditions.</figcaption>
       </figure>
       <figure>
         <div class="slot"><img src="GCS_Design_Fliight_Technologies.jpg" alt="Ground control station enclosure"></div>
@@ -405,38 +414,9 @@ footer{border-top:1px solid var(--rule); padding:48px 0 66px}
       </div>
     </div>
 
-    <p class="note">To add another photo, copy a figure block and change the filename:
-      &lt;div class="slot"&gt;&lt;img src="Clip.jpg" alt="describe the photo"&gt;&lt;/div&gt;
-      Spaces in a filename must be written as %20.</p>
   </div>
 </section>
 
-<!-- 1A -->
-<section id="practice">
-  <div class="wrap">
-    <h2>Professional practice</h2>
-    <p class="lead">Replace each heading with the exact question wording from the brief.</p>
-    <div class="prose">
-      <div class="qa">
-        <h3><span class="tbd">Question 1 — paste the question here</span></h3>
-        <p><span class="tbd">Answer in full paragraphs. Name the context, what you were responsible for, and what it changed about how you see the profession. Describe the work, not the client.</span></p>
-      </div>
-      <div class="qa">
-        <h3><span class="tbd">Question 2</span></h3>
-        <p><span class="tbd">Your answer.</span></p>
-      </div>
-      <div class="qa">
-        <h3><span class="tbd">Question 3</span></h3>
-        <p><span class="tbd">Your answer.</span></p>
-      </div>
-      <div class="qa">
-        <h3><span class="tbd">Question 4</span></h3>
-        <p><span class="tbd">Your answer.</span></p>
-      </div>
-      <p class="note">Each answer needs to show how work experience formed your professional identity. The 2.7 kg testing decision and the client conversations on the rover GCS are both strong material.</p>
-    </div>
-  </div>
-</section>
 
 <!-- LETTER -->
 <section id="letter">
